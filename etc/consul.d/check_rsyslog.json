@@ -1,0 +1,9 @@
+{
+  "check": {
+    "id": "syslog",
+    "name": "syslog",
+    "port": 514,
+    "script": "supervisorctl status rsyslog|grep RUNNING",
+    "interval": "10s"
+  }
+}
