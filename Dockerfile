@@ -1,8 +1,7 @@
 FROM qnib/supervisor
-MAINTAINER "Christian Kniep <christian@qnib.org>"
 
 ADD etc/yum.repos.d/rsyslog.repo /etc/yum.repos.d/
-RUN yum -y install rsyslog
+RUN yum -y install rsyslog rsyslog-kafka
 ADD etc/rsyslog.conf /etc/
 ADD etc/rsyslog.d/*.conf.disabled /etc/rsyslog.d/
 # START

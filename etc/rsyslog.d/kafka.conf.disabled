@@ -1,0 +1,2 @@
+module(load="omkafka")
+*.* action(type="omkafka" topic="syslog" confParam="compression.codec=snappy")
