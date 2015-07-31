@@ -1,6 +1,15 @@
 #!/bin/bash
 
-trap "echo stopping rsyslog;kill -9 $(cat /var/run/rsyslogd.pid); exit" HUP INT TERM EXIT
+function stop_rsyslog {
+     PID=$(cat /var/run/rsyslogd.pid)
+     echo "Stopping rsyslog[${PID}]"
+     kill -9 ${PID}
+     if [ -f /var/run/rsyslogd.pid ];then
+         echo "GarbageCollect PID file"
+         rm -f /var/run/rsyslogd.pid
+     fi
+}
+trap stop_rsyslog HUP INT TERM EXIT
 
 DEFAULT=true
 if [ "X${FORWARD_TO_LOGSTASH}" == "Xtrue" ];then
