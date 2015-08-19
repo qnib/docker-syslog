@@ -9,6 +9,16 @@ function stop_rsyslog {
          rm -f /var/run/rsyslogd.pid
      fi
 }
+
+function check_heka {
+    cnt_srv=$(curl -s localhost:8500/v1/catalog/service/heka|grep -c "\"Node\":\"$(hostname)\"")
+    if [ ${cnt_srv} -ne 1 ];then
+        echo "[start_rsyslog] No running 'hdfs service yet, sleep 5 sec'"
+        sleep 5
+        check_heka
+    fi
+}
+
 trap stop_rsyslog HUP INT TERM EXIT
 
 DEFAULT=true
@@ -21,6 +31,7 @@ if [ "X${FORWARD_TO_KAFKA}" == "Xtrue" ];then
    DEFAULT=false
 fi
 if [ "X${FORWARD_TO_HEKA}" == "Xtrue" ];then
+   check_heka
    ln -sf /etc/rsyslog.d/heka.conf.disabled /etc/rsyslog.d/heka.conf  
    DEFAULT=false
 fi
