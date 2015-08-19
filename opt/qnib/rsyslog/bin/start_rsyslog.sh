@@ -21,11 +21,15 @@ if [ "X${FORWARD_TO_KAFKA}" == "Xtrue" ];then
    DEFAULT=false
 fi
 if [ "X${FORWARD_TO_FILE}" == "Xtrue" ];then
-   ln -sf /etc/rsyslog.d/file.conf.disabled /etc/rsyslog.d/file.conf  
+   if [ ! -f /etc/rsyslog.d/file.conf ];then
+       ln -sf /etc/rsyslog.d/file.conf.disabled /etc/rsyslog.d/file.conf  
+   fi
    DEFAULT=false
 fi
 if [ ${DEFAULT} == "true" ];then
-   ln -sf /etc/rsyslog.d/file.conf.disabled /etc/rsyslog.d/file.conf  
+   if [ ! -f /etc/rsyslog.d/file.conf ];then
+       ln -sf /etc/rsyslog.d/file.conf.disabled /etc/rsyslog.d/file.conf  
+   fi
 fi
 /usr/sbin/rsyslogd 
 while true
