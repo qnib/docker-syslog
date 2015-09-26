@@ -1,2 +1,2 @@
 #### RULES ####
-*.info;kernel.none;mail.none;authpriv.none;cron.none                /var/log/messages
+*.info;kern.none;mail.none;authpriv.none;cron.none                /var/log/messages
