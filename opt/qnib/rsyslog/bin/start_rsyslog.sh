@@ -22,10 +22,6 @@ function check_heka {
 trap stop_rsyslog HUP INT TERM EXIT
 
 DEFAULT=true
-if [ "X${FORWARD_TO_LOGSTASH}" == "Xtrue" ];then
-   ln -sf /etc/rsyslog.d/logstash.conf.disabled /etc/rsyslog.d/logstash.conf  
-   DEFAULT=false
-fi
 if [ "X${FORWARD_TO_KAFKA}" == "Xtrue" ];then
    ln -sf /etc/rsyslog.d/kafka.conf.disabled /etc/rsyslog.d/kafka.conf  
    DEFAULT=false
