@@ -1,4 +1,4 @@
-FROM qnib/supervisor
+FROM qnib/consul
 
 ADD etc/yum.repos.d/rsyslog.repo /etc/yum.repos.d/
 RUN yum -y install rsyslog rsyslog-kafka
