@@ -1,7 +1,7 @@
 FROM qnib/consul
 
 ADD etc/yum.repos.d/rsyslog.repo /etc/yum.repos.d/
-RUN yum -y install rsyslog rsyslog-kafka
+RUN dnf -y install rsyslog rsyslog-kafka
 ADD etc/rsyslog.conf /etc/
 ADD etc/rsyslog.d/*.conf.disabled /etc/rsyslog.d/
 RUN mv /etc/rsyslog.d/listen.conf /etc/rsyslog.d/listen.conf.disabled
