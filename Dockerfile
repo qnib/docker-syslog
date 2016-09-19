@@ -3,7 +3,7 @@ FROM qnib/consul
 ADD etc/yum.repos.d/rsyslog.repo /etc/yum.repos.d/
 RUN dnf install -y dnf-plugins-core && \
     dnf copr enable -y red/libgcrypt.so.11 && \
-    dnf -y install rsyslog rsyslog-kafka
+    dnf --allowerasing -y install rsyslog rsyslog-kafka
 ADD etc/rsyslog.conf /etc/
 ADD etc/rsyslog.d/*.conf.disabled /etc/rsyslog.d/
 # START
