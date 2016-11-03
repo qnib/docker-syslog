@@ -1,4 +1,4 @@
-FROM qnib/consul
+FROM qnib/consul:23
 
 ADD etc/yum.repos.d/rsyslog.repo /etc/yum.repos.d/
 RUN dnf install -y dnf-plugins-core && \
